@@ -9,3 +9,13 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model note {
+  id          String   @id @default(uuid())
+  title       String   @unique() @db.VarChar(60)
+  description String   @db.VarChar()
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("notes")
+}
